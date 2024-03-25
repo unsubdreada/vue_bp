@@ -35,8 +35,14 @@ onMounted(async () => {
             <th class="py-1.5 border-r border-slate-300">Категория</th>
             <th class="py-1.5 border-r border-slate-300">Причина</th>
             <th class="py-1.5 border-r border-slate-300">Сумма</th>
-            <th class="w-20"><button class="bg-slate-100 border border-slate-300 p-1 hover:bg-slate-300 hover:border-slate-400">Удалить</button></th>
-          </tr>пшк фвв 
+            <th class="w-20">
+              <button
+                class="bg-slate-100 border border-slate-300 p-1 hover:bg-slate-300 hover:border-slate-400"
+              >
+                Удалить
+              </button>
+            </th>
+          </tr>
         </thead>
         <tbody>
           <tr

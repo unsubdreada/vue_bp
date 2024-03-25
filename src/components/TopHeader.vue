@@ -7,7 +7,6 @@ const router = useRouter()
 const authStore = useRegistrationStore()
 const token = computed(() => authStore.userInfo.token)
 
-
 const currentDate = ref('')
 
 onMounted(() => {
@@ -39,7 +38,7 @@ const exit = () => {
     <ul class="flex items-center gap-5">
       <router-link to="/workspace" v-if="token">
         <li
-          class="flex items-center gap-3 bg-violet-100 border border-lime-300 rounded-xl p-2 hover:bg-lime-50 hover:text-lime-600 hover:-translate-y-1 hover:shadow-md hover:rotate-2 transition cursor-pointer"
+          class="flex items-center gap-3 bg-violet-100 border border-lime-300 rounded-xl p-2 hover:bg-lime-50 hover:text-lime-600 hover:-translate-y-1 hover:shadow-md transition cursor-pointer"
         >
           <img class="w-5" src="/sign-in.svg" alt="Profile" />
           <span class="text-slate-500 font-bold">WorkSpace</span>
@@ -48,7 +47,7 @@ const exit = () => {
 
       <router-link to="/about">
         <li
-          class="flex items-center gap-3 border border-lime-300 rounded-xl p-2 hover:bg-lime-50 hover:text-lime-600 hover:-translate-y-1 hover:shadow-md hover:rotate-2 transition cursor-pointer"
+          class="flex items-center gap-3 border border-lime-300 rounded-xl p-2 hover:bg-lime-50 hover:text-lime-600 hover:-translate-y-1 hover:shadow-md transition cursor-pointer"
         >
           <img class="w-5" src="/info.svg" alt="Information" />
           <span>О сайте</span>
@@ -57,7 +56,7 @@ const exit = () => {
 
       <router-link to="/contacts">
         <li
-          class="flex items-center gap-3 border border-lime-300 rounded-xl p-2 hover:bg-lime-50 hover:text-lime-600 hover:-translate-y-1 hover:shadow-md hover:rotate-2 transition cursor-pointer"
+          class="flex items-center gap-3 border border-lime-300 rounded-xl p-2 hover:bg-lime-50 hover:text-lime-600 hover:-translate-y-1 hover:shadow-md transition cursor-pointer"
         >
           <img class="w-5" src="/contacts.svg" alt="Contacts" />
           <span>Контакты</span>
@@ -66,7 +65,7 @@ const exit = () => {
 
       <router-link to="/authentication" v-if="!token">
         <li
-          class="flex items-center gap-3 border border-lime-300 rounded-xl p-2 hover:bg-lime-50 hover:text-lime-600 hover:-translate-y-1 hover:shadow-md hover:rotate-2 transition cursor-pointer"
+          class="flex items-center gap-3 border border-lime-300 rounded-xl p-2 hover:bg-lime-50 hover:text-lime-600 hover:-translate-y-1 hover:shadow-md transition cursor-pointer"
         >
           <img class="w-5" src="/sign-in.svg" alt="Profile" />
           <span>Войти</span>
@@ -75,7 +74,7 @@ const exit = () => {
 
       <router-link to="/authentication" v-if="token" @click.prevent="exit">
         <li
-          class="flex items-center gap-3 border border-lime-300 rounded-xl p-2 hover:bg-lime-50 hover:text-lime-600 hover:-translate-y-1 hover:shadow-md hover:rotate-2 transition cursor-pointer"
+          class="flex items-center gap-3 border border-lime-300 rounded-xl p-2 hover:bg-lime-50 hover:text-lime-600 hover:-translate-y-1 hover:shadow-md transition cursor-pointer"
         >
           <img class="w-5" src="/sign-in.svg" alt="Profile" />
           <span>Выйти</span>
