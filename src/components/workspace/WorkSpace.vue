@@ -5,7 +5,7 @@ import WorkSpaceField from './WorkSpaceField.vue'
 </script>
 
 <template>
-  <div class="w-full text-center mt-2 border border-slate-200 cursor-default">
+  <div class="flex flex-col h-screen overflow-hidden w-full text-center mt-2 cursor-default">
     <div class="grid grid-cols-5">
       <WorkSpaceControls />
       <WorkSpaceField />

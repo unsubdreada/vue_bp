@@ -17,9 +17,9 @@ checkUser()
 
 <template>
   <div
-    class="min-h-screen bg-white w-4/5 mx-auto shadow-2xl shadow-slate-300 selection:bg-lime-100"
+    class="h-screen overflow-hidden bg-white w-4/5 mx-auto selection:bg-blue-100 selection:text-slate-900 shadow-2xl rounded-lg"
   >
-    <div class="py-5 px-10">
+    <div class="px-10">
       <TopHeader />
       <router-view></router-view>
     </div>

@@ -87,7 +87,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="col-span-1 text-center border-r">
+  <div class="text-center border-r">
     <div class="bg-slate-100 py-3 border-b border-slate-200 mb-3">
       <h1 class="text-xl font-bold">Инструменты</h1>
     </div>

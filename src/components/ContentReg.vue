@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { useRegistrationStore } from '@/engine/authentication'
 import { useRouter } from 'vue-router'
 import ErrorNotification from './ErrorNotification.vue'
+import { AtSymbolIcon, LockClosedIcon } from '@heroicons/vue/24/outline'
 
 const login = ref()
 const email = ref()
@@ -40,45 +41,73 @@ const regSubmit = async () => {
     <h1 class="text-2xl font-bold mb-5">Регистрация</h1>
     <div id="regForm">
       <div class="flex flex-col w-2/5 text-left m-auto items-center">
-        <div class="relative mt-3 hover:drop-shadow-sm">
-          <img class="w-5 absolute left-2.5 top-2.5" src="/login-reg.svg" alt="EmailReg" />
-          <input
-            class="h-10 pl-8 border-b border-lime-200 outline-none text-slate-500 hover:bg-lime-50 hover:border-lime-300 focus:bg-lime-50 focus:border-lime-500 transition ease-in-out selection:bg-lime-300"
-            v-model="login"
-            type="text"
-            placeholder="Логин"
-          />
+        <div class="bg-white p-4 rounded-lg">
+          <div class="relative bg-inherit">
+            <input
+              v-model="login"
+              type="text"
+              placeholder="Логин"
+              class="peer bg-transparent h-10 w-72 rounded-lg text-gray-500 placeholder-transparent ring-2 px-2 ring-[#4c46e1] focus:ring-[#939af2] focus:outline-none focus:border-rose-600"
+            />
+            <label
+              class="absolute cursor-text left-0 -top-3 text-sm text-gray-500 bg-inherit mx-1 px-1 peer-placeholder-shown:text-base peer-placeholder-shown:text-[gray-500] peer-placeholder-shown:top-2 peer-focus:-top-3 peer-focus:text-[#939af2] peer-focus:text-sm transition-all"
+            >
+              <AtSymbolIcon class="h-5 inline pr-1 items-center" />Логин</label
+            >
+          </div>
         </div>
-        <div class="relative mt-3 hover:drop-shadow-sm">
-          <img class="w-5 absolute left-2.5 top-2.5" src="/email.svg" alt="EmailReg" />
-          <input
-            class="h-10 pl-8 border-b border-lime-200 outline-none text-slate-500 hover:bg-lime-50 hover:border-lime-300 focus:bg-lime-50 focus:border-lime-500 transition ease-in-out selection:bg-lime-300"
-            v-model="email"
-            type="email"
-            placeholder="Электронная почта"
-          />
+
+        <div class="bg-white p-4 rounded-lg">
+          <div class="relative bg-inherit">
+            <input
+              v-model="email"
+              type="email"
+              placeholder="Email"
+              class="peer bg-transparent h-10 w-72 rounded-lg text-gray-500 placeholder-transparent ring-2 px-2 ring-[#4c46e1] focus:ring-[#939af2] focus:outline-none focus:border-rose-600"
+            />
+            <label
+              class="absolute cursor-text left-0 -top-3 text-sm text-gray-500 bg-inherit mx-1 px-1 peer-placeholder-shown:text-base peer-placeholder-shown:text-[gray-500] peer-placeholder-shown:top-2 peer-focus:-top-3 peer-focus:text-[#939af2] peer-focus:text-sm transition-all"
+            >
+              <AtSymbolIcon class="h-5 inline pr-1 items-center" />Email</label
+            >
+          </div>
         </div>
-        <div class="relative mt-3 hover:drop-shadow-sm">
-          <img class="w-5 absolute left-2.5 top-2.5" src="/password.svg" alt="PasswordReg" />
-          <input
-            class="h-10 pl-8 border-b border-lime-200 outline-none text-slate-500 hover:bg-lime-50 hover:border-lime-300 focus:bg-lime-50 focus:border-lime-500 transition ease-in-out selection:bg-lime-300"
-            v-model="password"
-            type="password"
-            placeholder="Пароль"
-          />
+
+        <div class="bg-white p-4 rounded-lg">
+          <div class="relative bg-inherit">
+            <input
+              v-model="password"
+              type="password"
+              placeholder="Пароль"
+              class="peer bg-transparent h-10 w-72 rounded-lg text-gray-500 placeholder-transparent ring-2 px-2 ring-[#4c46e1] focus:ring-[#939af2] focus:outline-none focus:border-rose-600"
+            />
+            <label
+              class="absolute cursor-text left-0 -top-3 text-sm text-gray-500 bg-inherit mx-1 px-1 peer-placeholder-shown:text-base peer-placeholder-shown:text-[gray-500] peer-placeholder-shown:top-2 peer-focus:-top-3 peer-focus:text-[#939af2] peer-focus:text-sm transition-all"
+            >
+              <LockClosedIcon class="h-5 inline pr-1 items-center" />Пароль</label
+            >
+          </div>
         </div>
-        <div class="relative mt-3 hover:drop-shadow-sm">
-          <img class="w-5 absolute left-2.5 top-2.5" src="/password.svg" alt="PasswordReg" />
-          <input
-            class="h-10 pl-8 border-b border-lime-200 outline-none text-slate-500 hover:bg-lime-50 hover:border-lime-300 focus:bg-lime-50 focus:border-lime-500 transition ease-in-out selection:bg-lime-300"
-            v-model="confirmPassword"
-            type="password"
-            placeholder="Подтвердите пароль"
-          />
+
+        <div class="bg-white p-4 rounded-lg">
+          <div class="relative bg-inherit">
+            <input
+              v-model="confirmPassword"
+              type="password"
+              placeholder="Подтвердите пароль"
+              class="peer bg-transparent h-10 w-72 rounded-lg text-gray-500 placeholder-transparent ring-2 px-2 ring-[#4c46e1] focus:ring-[#939af2] focus:outline-none focus:border-rose-600"
+            />
+            <label
+              class="absolute cursor-text left-0 -top-3 text-sm text-gray-500 bg-inherit mx-1 px-1 peer-placeholder-shown:text-base peer-placeholder-shown:text-[gray-500] peer-placeholder-shown:top-2 peer-focus:-top-3 peer-focus:text-[#939af2] peer-focus:text-sm transition-all"
+            >
+              <AtSymbolIcon class="h-5 inline pr-1 items-center" />Подтвердите пароль</label
+            >
+          </div>
         </div>
+
         <button
           @click.prevent="regSubmit"
-          class="my-3 w-4/5 border border-lime-500 rounded-xl p-2 bg-lime-300 hover:scale-105 hover:drop-shadow-lg hover:bg-lime-400 active:bg-slate-200 transition ease-in-out"
+          class="my-3 bg-[#4c46e1] hover:bg-[#676aeb] rounded-xl p-2 px-4 text-white"
         >
           Отправить
         </button>

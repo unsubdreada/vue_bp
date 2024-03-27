@@ -4,6 +4,7 @@ import ContentContacts from './components/ContentContacts.vue'
 import ContentAuth from './components/ContentAuth.vue'
 import ContentReg from './components/ContentReg.vue'
 import WorkSpace from './components/workspace/WorkSpace.vue'
+import Cabinet from './components/cabinet/Cabinet.vue'
 import { useRegistrationStore } from '@/engine/authentication'
 
 const router = createRouter({
@@ -35,6 +36,13 @@ const router = createRouter({
     {
       path: '/workspace',
       component: WorkSpace,
+      meta: {
+        auth: true
+      }
+    },
+    {
+      path: '/cabinet',
+      component: Cabinet,
       meta: {
         auth: true
       }
