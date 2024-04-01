@@ -19,7 +19,7 @@ const loginSubmit = async () => {
     },
     'signIn'
   )
-  router.push('/workspace')
+  router.push('/cabinet')
 }
 </script>
 

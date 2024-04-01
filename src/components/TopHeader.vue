@@ -3,7 +3,6 @@ import { useRegistrationStore } from '@/engine/authentication'
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import {
-  BriefcaseIcon,
   HashtagIcon,
   SparklesIcon,
   ArrowLeftEndOnRectangleIcon,
@@ -23,7 +22,7 @@ const exit = () => {
 </script>
 
 <template>
-  <header class="flex justify-between border-b border-[#4c46e1] pb-5 py-4">
+  <header class="sticky top-0 z-50 flex justify-between p-5 bg-white rounded-b-lg">
     <router-link to="/about">
       <div class="flex items-center gap-4 cursor-pointer pl-10">
         <img src="/logo.png" alt="Logo" class="w-10" />
@@ -40,15 +39,6 @@ const exit = () => {
         >
           <HomeIcon class="h-5" />
           <span class="font-medium">Кабинет</span>
-        </li>
-      </router-link>
-
-      <router-link to="/workspace" v-if="token">
-        <li
-          class="flex items-center gap-3 bg-[#4c46e1] text-white rounded-xl p-2 hover:bg-[#676aeb] hover:text-white transition cursor-pointer"
-        >
-          <BriefcaseIcon class="h-5" />
-          <span class="font-medium">WorkSpace</span>
         </li>
       </router-link>
 

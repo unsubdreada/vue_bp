@@ -27,7 +27,7 @@ const regSubmit = async () => {
     if (registrationStore.errorMessage) {
       return
     }
-    router.push('/workspace')
+    router.push('/cabinet')
   } catch (error) {
     console.log('Ошибка регистрации: ', error)
   }

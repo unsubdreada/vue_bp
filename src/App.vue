@@ -16,11 +16,11 @@ checkUser()
 </script>
 
 <template>
-  <div
-    class="h-screen overflow-hidden bg-white w-4/5 mx-auto selection:bg-blue-100 selection:text-slate-900 shadow-2xl rounded-lg"
-  >
-    <div class="px-10">
-      <TopHeader />
+  <div class="flex flex-col h-screen">
+    <TopHeader />
+    <div
+      class="flex-grow overflow-hidden bg-white w-4/5 mx-auto mt-2 selection:bg-blue-100 selection:text-slate-900 shadow-2xl rounded-lg"
+    >
       <router-view></router-view>
     </div>
   </div>

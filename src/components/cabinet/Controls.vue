@@ -1,7 +1,9 @@
 <script setup>
-import { onMounted, ref, computed } from 'vue'
+import { onMounted, ref, computed, inject } from 'vue'
 import axios from 'axios'
 import axiosApiInstance from '@/api'
+
+const takeTransactions = inject('takeTransactions')
 
 const currentDate = ref(new Date().toISOString().substr(0, 10))
 
@@ -30,7 +32,6 @@ const fetchCategories = async () => {
 }
 
 const getData = () => {
-  const formatAmount = typeTransaction.value === 'true' ? amount.value : -amount.value
   const categoryId = selectedCategory.value
   const categoryObject = categories.value.find((category) => category.id === categoryId)
   const categoryName = categoryObject ? categoryObject.category : ''
@@ -38,8 +39,9 @@ const getData = () => {
     type: typeTransactionText.value,
     category: categoryName,
     reason: reason.value,
-    amount: formatAmount,
-    date: date.value
+    amount: amount.value,
+    date: date.value,
+    time: new Date().toLocaleTimeString()
   }
   return arrayData
 }
@@ -48,11 +50,11 @@ const sendDataToDB = async (arrayData) => {
   const storedTokens = JSON.parse(localStorage.getItem('userTokens'))
   const uid = storedTokens.uid
   try {
-    const response = await axiosApiInstance.post(
+    await axiosApiInstance.post(
       `https://budgetplanner-54498-default-rtdb.europe-west1.firebasedatabase.app/users/${uid}/transactions.json`,
       arrayData
     )
-    console.log(response)
+    await takeTransactions()
   } catch (error) {
     switch (error.response.status) {
       case 401:
@@ -75,6 +77,7 @@ const sendDataToDB = async (arrayData) => {
 const getDataAndSendToDB = () => {
   if (!date.value || !selectedCategory.value || !reason.value || !amount.value) {
     notification.value = 'Заполните все поля'
+    alert(notification.value)
     return
   }
   const data = getData()
@@ -87,55 +90,48 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="text-center border-r">
-    <div class="bg-slate-100 py-3 border-b border-slate-200 mb-3">
-      <h1 class="text-xl font-bold">Инструменты</h1>
-    </div>
-    <div class="flex flex-col w-8/12 m-auto">
-      <input
-        class="text-sm text-center border border-slate-200 outline-none mb-2 p-2"
-        type="date"
-        v-model="date"
-        placeholder="Дата"
-        value="currentDate"
-      />
-      <select
-        v-model="typeTransaction"
-        class="text-sm text-center border border-slate-200 outline-none mb-2 p-2"
-        @change="fetchCategories"
-      >
-        <option value="true">Доход</option>
-        <option value="false">Расход</option>
-      </select>
-      <p class="text-xs text-left text-slate-400">Выберите категорию</p>
-      <select
-        v-model="selectedCategory"
-        class="text-sm text-left border border-slate-200 outline-none mb-2 p-2"
-      >
-        <option v-for="category in categories" :key="category.id" :value="category.id">
-          {{ category.category }}
-        </option>
-      </select>
-      <input
-        class="text-sm text-center border border-slate-200 outline-none mb-2 p-2"
-        type="text"
-        v-model="reason"
-        placeholder="Причина"
-      />
-      <input
-        type="number"
-        min="1"
-        class="text-sm text-center border border-slate-200 outline-none mb-2 p-2"
-        v-model="amount"
-        placeholder="Сумма"
-      />
-      <button
-        class="bg-slate-100 text-sm text-center border border-slate-200 outline-none mb-2 p-2 hover:bg-slate-200 hover:border-slate-300 transition ease-in-out"
-        @click="getDataAndSendToDB"
-      >
-        Добавить
-      </button>
-      <p class="text-sm bg-pink-100">{{ notification }}</p>
-    </div>
+  <div class="flex justify-center gap-3 p-2 m-auto">
+    <input
+      class="text-s text-center ring-1 ring-[#4c46e1] rounded-lg p-2 outline-none"
+      type="date"
+      v-model="date"
+      placeholder="Дата"
+      value="currentDate"
+    />
+    <select
+      v-model="typeTransaction"
+      class="text-s text-center ring-1 ring-[#4c46e1] rounded-lg p-2 outline-none"
+      @change="fetchCategories"
+    >
+      <option value="true">Доход</option>
+      <option value="false">Расход</option>
+    </select>
+    <select
+      v-model="selectedCategory"
+      class="w-72 text-s text-center ring-1 ring-[#4c46e1] rounded-lg p-2 outline-none"
+    >
+      <option v-for="category in categories" :key="category.id" :value="category.id">
+        {{ category.category }}
+      </option>
+    </select>
+    <input
+      class="text-s text-center ring-1 ring-[#4c46e1] rounded-lg p-2 outline-none"
+      type="text"
+      v-model="reason"
+      placeholder="Причина"
+    />
+    <input
+      type="number"
+      min="1"
+      class="text-s text-center ring-1 ring-[#4c46e1] rounded-lg p-2 outline-none"
+      v-model="amount"
+      placeholder="Сумма"
+    />
+    <button
+      class="bg-[#4c46e1] text-white rounded-xl p-2 hover:bg-[#676aeb] hover:text-white transition cursor-pointer"
+      @click="getDataAndSendToDB"
+    >
+      Добавить
+    </button>
   </div>
 </template>
