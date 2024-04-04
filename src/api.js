@@ -41,12 +41,14 @@ axiosApiInstance.interceptors.response.use(
         console.log(newTokens.data)
         authStore.userInfo.token = newTokens.data.access_token
         authStore.userInfo.refreshToken = newTokens.data.refresh_token
+        authStore.userInfo.uid = JSON.parse(localStorage.getItem('userTokens')).uid
 
         localStorage.setItem(
           'userTokens',
           JSON.stringify({
             token: newTokens.data.access_token,
             refreshToken: newTokens.data.refresh_token,
+            uid: authStore.userInfo.uid
           })
         )
       } catch (err) {
@@ -55,6 +57,7 @@ axiosApiInstance.interceptors.response.use(
         router.push('/authentication')
         authStore.userInfo.token = ''
         authStore.userInfo.refreshToken = ''
+        authStore.userInfo.uid = ''
       }
     }
     console.log(error)

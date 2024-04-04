@@ -32,5 +32,8 @@ export const options = {
         padding: 15
       }
     }
-  }
+  },
+  cutout: '75%',
+  radius: '90%',
+  hoverOffset: 15
 }

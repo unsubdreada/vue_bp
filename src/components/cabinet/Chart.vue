@@ -1,5 +1,5 @@
 <script setup>
-import { Pie } from 'vue-chartjs'
+import { Doughnut } from 'vue-chartjs'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from 'chart.js'
 import { ref, onMounted } from 'vue'
 import axiosApiInstance from '@/api'
@@ -53,5 +53,5 @@ onMounted(async () => {
 </script>
 
 <template>
-  <Pie :data="data" :options="options" class="" />
+  <Doughnut :data="data" :options="options" />
 </template>
