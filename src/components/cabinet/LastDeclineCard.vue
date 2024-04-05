@@ -43,8 +43,8 @@ const hasTransactions = computed(() => {
     </template>
 
     <template v-else>
-      <div class="flex items-center justify-center">
-        <p class="text-center text-gray-600">К счастью, расходов нет!</p>
+      <div class="flex flex-col items-center justify-center">
+        <p class="text-center text-gray-600">К счастью, расходов нет!😊</p>
         <button class="p-1 hover:text-[#4c46e1]" @click="emit('showTable')">Добавить!</button>
       </div>
     </template>
