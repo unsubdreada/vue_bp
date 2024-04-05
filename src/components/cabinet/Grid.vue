@@ -3,6 +3,13 @@ import CardPerson from './PersonCard.vue'
 import LastDeclineCard from './LastDeclineCard.vue'
 import LastIncomeCard from './LastIncomeCard.vue'
 import ChartCard from './ChartCard.vue'
+import { inject, computed } from 'vue'
+
+const trans = inject('trans')
+
+const hasTransactions = computed(() => {
+  return trans.value.length > 0
+})
 </script>
 
 <template>
@@ -10,6 +17,6 @@ import ChartCard from './ChartCard.vue'
     <LastDeclineCard />
     <CardPerson />
     <LastIncomeCard />
-    <ChartCard />
+    <ChartCard v-if="hasTransactions" />
   </div>
 </template>

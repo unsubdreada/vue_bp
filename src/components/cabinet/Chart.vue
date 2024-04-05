@@ -41,7 +41,7 @@ const fetchData = async () => {
         }
       ]
     }
-    console.log(data.value)
+    //console.log(data.value)
   } catch (error) {
     console.error(error)
   }
