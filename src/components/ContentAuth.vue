@@ -29,13 +29,6 @@ const loginSubmit = async () => {
   >
     <h1 class="text-2xl font-bold mb-5">Авторизация</h1>
     <div class="flex flex-col w-2/5 text-left m-auto items-center">
-      <Message
-        v-if="registrationStore.errorMessage"
-        severity="warn"
-        :sticky="sticky"
-        :life="5000"
-        >{{ registrationStore.errorMessage }}</Message
-      >
       <div class="bg-white p-4 rounded-lg">
         <div class="relative bg-inherit">
           <input
@@ -82,5 +75,38 @@ const loginSubmit = async () => {
         </button>
       </router-link>
     </div>
+    <Message
+      v-if="authenticationStore.errorMessage"
+      severity="warn"
+      @close="authenticationStore.errorMessage = ''"
+      class="my-2"
+      >{{ authenticationStore.errorMessage }}</Message
+    >
   </div>
 </template>
+
+<style>
+.p-message-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+  background-color: rgba(243, 180, 180, 0.473);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  padding: 0.4rem;
+}
+
+.p-message-close-icon {
+  cursor: pointer;
+}
+
+.p-message-icon {
+  color: rgb(139, 9, 9);
+}
+
+.p-message-close-icon:hover {
+  color: red;
+  transition: 100ms ease-in-out;
+}
+</style>

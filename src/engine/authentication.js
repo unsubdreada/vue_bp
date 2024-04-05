@@ -73,6 +73,12 @@ export const useRegistrationStore = defineStore('registration', () => {
         case 'USER_DISABLED':
           errorMessage.value = 'Пользователь заблокирован администратором'
           break
+        case 'MISSING_EMAIL':
+          errorMessage.value = 'Пожалуйста, введите Email'
+          break
+        case 'MISSING_PASSWORD':
+          errorMessage.value = 'Пожалуйста, введите пароль'
+          break
         default:
           errorMessage.value = 'Неизвестная ошибка'
           break
