@@ -16,16 +16,18 @@ const takeInfo = async () => {
     const { data } = await axiosApiInstance.get(
       `https://budgetplanner-54498-default-rtdb.europe-west1.firebasedatabase.app/users/${uid}.json`
     )
-    const transactions = Object.entries(data.transactions).map(([key, value]) => ({
-      id: key,
-      date: value.date,
-      time: value.time,
-      category: value.category,
-      type: value.type,
-      amount: value.amount
-    }))
-
     info.value = data
+    const transactions = data.transactions
+      ? Object.entries(data.transactions).map(([key, value]) => ({
+          id: key,
+          date: value.date,
+          time: value.time,
+          category: value.category,
+          type: value.type,
+          amount: value.amount
+        }))
+      : []
+
     trans.value = transactions
 
     //console.log(info.value)
