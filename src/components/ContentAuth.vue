@@ -2,8 +2,8 @@
 import { ref } from 'vue'
 import { useRegistrationStore } from '@/engine/authentication'
 import { useRouter } from 'vue-router'
-import ErrorNotification from './ErrorNotification.vue'
 import { AtSymbolIcon, LockClosedIcon } from '@heroicons/vue/24/outline'
+import Message from 'primevue/message'
 
 const email = ref()
 const password = ref()
@@ -29,6 +29,13 @@ const loginSubmit = async () => {
   >
     <h1 class="text-2xl font-bold mb-5">Авторизация</h1>
     <div class="flex flex-col w-2/5 text-left m-auto items-center">
+      <Message
+        v-if="registrationStore.errorMessage"
+        severity="warn"
+        :sticky="sticky"
+        :life="5000"
+        >{{ registrationStore.errorMessage }}</Message
+      >
       <div class="bg-white p-4 rounded-lg">
         <div class="relative bg-inherit">
           <input
@@ -75,9 +82,5 @@ const loginSubmit = async () => {
         </button>
       </router-link>
     </div>
-    <ErrorNotification
-      v-if="authenticationStore.errorMessage"
-      :errorMessage="authenticationStore.errorMessage"
-    />
   </div>
 </template>

@@ -60,7 +60,8 @@ axiosApiInstance.interceptors.response.use(
         authStore.userInfo.uid = ''
       }
     }
-    console.log(error)
+    //console.log(error.response.data.error.message)
+    return Promise.reject(error)
   }
 )
 

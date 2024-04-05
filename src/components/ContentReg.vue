@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { useRegistrationStore } from '@/engine/authentication'
 import { useRouter } from 'vue-router'
-import ErrorNotification from './ErrorNotification.vue'
+import Message from 'primevue/message'
 import { AtSymbolIcon, LockClosedIcon } from '@heroicons/vue/24/outline'
 
 const login = ref()
@@ -30,6 +30,7 @@ const regSubmit = async () => {
     router.push('/cabinet')
   } catch (error) {
     console.log('Ошибка регистрации: ', error)
+    registrationStore.errorMessage = error
   }
 }
 </script>
@@ -116,10 +117,39 @@ const regSubmit = async () => {
           <router-link to="/authentication" class="text-teal-950">Войти!</router-link>
         </span>
       </div>
-      <ErrorNotification
-        v-if="registrationStore.errorMessage"
-        :errorMessage="registrationStore.errorMessage"
-      />
     </div>
+    <Message
+      v-if="registrationStore.errorMessage"
+      severity="warn"
+      @close="registrationStore.errorMessage = ''"
+      class="my-2"
+      >{{ registrationStore.errorMessage }}</Message
+    >
   </div>
 </template>
+
+<style>
+.p-message-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+  background-color: rgba(243, 180, 180, 0.473);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  padding: 0.4rem;
+}
+
+.p-message-close-icon {
+  cursor: pointer;
+}
+
+.p-message-icon {
+  color: rgb(139, 9, 9);
+}
+
+.p-message-close-icon:hover {
+  color: red;
+  transition: 100ms ease-in-out;
+}
+</style>
