@@ -1,7 +1,6 @@
 <script setup>
 import { inject, computed } from 'vue'
 import { defineEmits } from 'vue'
-import { TableCellsIcon } from '@heroicons/vue/24/outline'
 
 const emit = defineEmits(['showGrid', 'showTable'])
 
@@ -46,12 +45,7 @@ const hasTransactions = computed(() => {
     <template v-else>
       <div class="flex items-center justify-center">
         <p class="text-center text-gray-600">К сожалению, доходов нет!</p>
-        <button class="p-1">
-          <TableCellsIcon
-            class="h-7 text-black hover:text-slate-500 transition ease-in-out"
-            @click="emit('showTable')"
-          />
-        </button>
+        <button class="p-1 hover:text-[#4c46e1]" @click="emit('showTable')">Добавить!</button>
       </div>
     </template>
   </div>
