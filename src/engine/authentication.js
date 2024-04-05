@@ -15,6 +15,7 @@ export const useRegistrationStore = defineStore('registration', () => {
     password: ''
   })
   const errorMessage = ref('')
+  const successMessage = ref('')
   const authentication = async (payload, type) => {
     const stringUrl = type === 'signUp' ? 'signUp' : 'signInWithPassword'
     errorMessage.value = ''
@@ -87,14 +88,37 @@ export const useRegistrationStore = defineStore('registration', () => {
     }
   }
 
+  const resetPassword = async (payload) => {
+    errorMessage.value = ''
+    successMessage.value = ''
+    try {
+      await axiosApiInstance.post(
+        `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${API_KEY}`,
+        {
+          ...payload,
+          requestType: 'PASSWORD_RESET'
+        }
+      )
+      successMessage.value = 'Письмо для сброса пароля отправлено на почту'
+    } catch (error) {
+      switch (error.response.data.error.message) {
+        case 'MISSING_EMAIL':
+          errorMessage.value = 'Пожалуйста, введите Email'
+          break
+        default:
+          errorMessage.value = 'Неизвестная ошибка'
+          break
+      }
+    }
+  }
+
   const addUserOnDB = async (userInfo) => {
     try {
       const response = await axiosApiInstance.put(
         `https://budgetplanner-54498-default-rtdb.europe-west1.firebasedatabase.app/users/${userInfo.uid}.json`,
         {
           login: userInfo.login,
-          email: userInfo.email,
-          password: userInfo.password
+          email: userInfo.email
         }
       )
       console.log('User added successfully:', response.data)
@@ -112,5 +136,5 @@ export const useRegistrationStore = defineStore('registration', () => {
       password: ''
     }
   }
-  return { authentication, userInfo, errorMessage, exit }
+  return { authentication, resetPassword, userInfo, errorMessage, successMessage, exit }
 })

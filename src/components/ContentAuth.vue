@@ -59,8 +59,10 @@ const loginSubmit = async () => {
         </div>
       </div>
 
-      <div class="flex flex-col w-4/5">
-        <button class="mt-1 text-xs hover:text-slate-400">Забыли пароль?</button>
+      <div class="flex flex-col w-4/5 text-center">
+        <router-link to="/reset">
+          <button class="mt-1 text-xs hover:text-slate-400">Забыли пароль?</button>
+        </router-link>
         <button
           class="my-3 bg-[#4c46e1] hover:bg-[#676aeb] rounded-xl p-2 text-white"
           @click="loginSubmit"
@@ -84,29 +86,3 @@ const loginSubmit = async () => {
     >
   </div>
 </template>
-
-<style>
-.p-message-wrapper {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  gap: 1rem;
-  background-color: rgba(243, 180, 180, 0.473);
-  border-radius: 0.5rem;
-  border: 1px solid rgba(255, 0, 0, 0.2);
-  padding: 0.4rem;
-}
-
-.p-message-close-icon {
-  cursor: pointer;
-}
-
-.p-message-icon {
-  color: rgb(139, 9, 9);
-}
-
-.p-message-close-icon:hover {
-  color: red;
-  transition: 100ms ease-in-out;
-}
-</style>

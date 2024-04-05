@@ -127,29 +127,3 @@ const regSubmit = async () => {
     >
   </div>
 </template>
-
-<style>
-.p-message-wrapper {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  gap: 1rem;
-  background-color: rgba(243, 180, 180, 0.473);
-  border-radius: 0.5rem;
-  border: 1px solid rgba(255, 0, 0, 0.2);
-  padding: 0.4rem;
-}
-
-.p-message-close-icon {
-  cursor: pointer;
-}
-
-.p-message-icon {
-  color: rgb(139, 9, 9);
-}
-
-.p-message-close-icon:hover {
-  color: red;
-  transition: 100ms ease-in-out;
-}
-</style>
