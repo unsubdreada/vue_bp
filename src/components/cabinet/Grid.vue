@@ -7,8 +7,8 @@ import { inject, computed } from 'vue'
 
 const trans = inject('trans')
 
-const hasTransactions = computed(() => {
-  return trans.value.length > 0
+const hasExpenses = computed(() => {
+  return trans.value.some((transaction) => transaction.type === 'Расход')
 })
 </script>
 
@@ -17,6 +17,6 @@ const hasTransactions = computed(() => {
     <LastDeclineCard />
     <CardPerson />
     <LastIncomeCard />
-    <ChartCard v-if="hasTransactions" />
+    <ChartCard v-if="hasExpenses" />
   </div>
 </template>
