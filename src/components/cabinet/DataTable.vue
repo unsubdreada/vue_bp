@@ -1,11 +1,13 @@
 <script setup>
-import { reactive, inject } from 'vue'
+import { reactive, inject, ref } from 'vue'
 import axiosApiInstance from '@/api'
 import { XMarkIcon, ChevronUpIcon, ChevronDownIcon } from '@heroicons/vue/24/outline'
 
 const transactions = inject('transactions')
 
 const takeTransactions = inject('takeTransactions')
+
+const planned = ref('Запланировано')
 
 const sortState = reactive({
   key: null,
@@ -146,7 +148,13 @@ const sortData = (key) => {
             {{ transaction.category }}
           </td>
           <td class="text-sm text-gray-900 font-light px-6 py-2">
-            {{ transaction.reason }}
+            <span v-if="transaction.planned">
+              <span class="bg-amber-400 text-slate-500 text-xs font-medium px-2 py-1 rounded">{{ planned }}</span>
+              {{ transaction.reason }}
+            </span>
+            <span v-else>
+              {{ transaction.reason }}
+            </span>
           </td>
           <td class="text-sm text-gray-900 font-light px-6 py-2 flex items-center justify-between">
             <span

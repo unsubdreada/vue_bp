@@ -13,6 +13,7 @@ const selectedCategory = ref()
 const typeTransaction = ref('false')
 const reason = ref('')
 const amount = ref(0)
+const planned = ref(false)
 
 const notification = ref('')
 
@@ -32,17 +33,23 @@ const fetchCategories = async () => {
 }
 
 const getData = () => {
+  // Сбор данных с инпутов
   const categoryId = selectedCategory.value
   const categoryObject = categories.value.find((category) => category.id === categoryId)
   const categoryName = categoryObject ? categoryObject.category : ''
+  if (date.value > currentDate.value) {
+    planned.value = true
+  }
   const arrayData = {
     type: typeTransactionText.value,
     category: categoryName,
     reason: reason.value,
     amount: amount.value,
     date: date.value,
+    planned: planned.value,
     time: new Date().toLocaleTimeString()
   }
+  planned.value = false
   return arrayData
 }
 
