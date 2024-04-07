@@ -1,10 +1,11 @@
 import axios from 'axios'
 import { useRegistrationStore } from '@/engine/authentication'
 import router from './router'
+import { firebaseConfig } from './firebaseCfg'
 
 const axiosApiInstance = axios.create()
 
-const API_KEY = import.meta.env.VITE_API_KEY_FIREBASE
+const API_KEY = firebaseConfig.apiKey
 
 axiosApiInstance.interceptors.request.use((config) => {
   const url = config.url
