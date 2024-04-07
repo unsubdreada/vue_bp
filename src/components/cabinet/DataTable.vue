@@ -149,7 +149,9 @@ const sortData = (key) => {
           </td>
           <td class="text-sm text-gray-900 font-light px-6 py-2">
             <span v-if="transaction.planned">
-              <span class="bg-amber-400 text-slate-500 text-xs font-medium px-2 py-1 rounded">{{ planned }}</span>
+              <span class="bg-amber-400 text-slate-500 text-xs font-medium px-2 py-1 rounded">{{
+                planned
+              }}</span>
               {{ transaction.reason }}
             </span>
             <span v-else>
