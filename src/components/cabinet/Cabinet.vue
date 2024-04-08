@@ -24,22 +24,24 @@ const takeInfo = async () => {
           time: value.time,
           category: value.category,
           type: value.type,
-          amount: value.amount
-        }))
+          amount: value.amount,
+          reason: value.reason,
+          planned: value.planned
+        })).reverse()
       : []
 
     trans.value = transactions
 
     //console.log(info.value)
-    //console.log(trans.value)
+    console.log(trans.value)
   } catch (error) {
     console.log(error)
   }
 }
 
-provide('info', info)
-provide('trans', trans)
-provide('takeInfo', takeInfo)
+provide('info', info) // Массив с информацией о пользователе
+provide('trans', trans) // Массив с транзакциями
+provide('takeInfo', takeInfo) // Функция для получения данных с БД
 
 onMounted(async () => {
   await takeInfo()

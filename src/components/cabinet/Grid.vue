@@ -2,6 +2,7 @@
 import CardPerson from './PersonCard.vue'
 import LastDeclineCard from './LastDeclineCard.vue'
 import LastIncomeCard from './LastIncomeCard.vue'
+import PlannedCard from './PlannedCard.vue'
 import ChartCard from './ChartCard.vue'
 import { inject, computed } from 'vue'
 
@@ -17,6 +18,7 @@ const hasExpenses = computed(() => {
     <LastDeclineCard />
     <CardPerson />
     <LastIncomeCard />
+    <PlannedCard />
     <ChartCard v-if="hasExpenses" />
   </div>
 </template>

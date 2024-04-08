@@ -3,7 +3,7 @@ import { onMounted, ref, computed, inject } from 'vue'
 import axios from 'axios'
 import axiosApiInstance from '@/api'
 
-const takeTransactions = inject('takeTransactions')
+const takeInfo = inject('takeInfo')
 
 const currentDate = ref(new Date().toISOString().substr(0, 10))
 
@@ -61,7 +61,7 @@ const sendDataToDB = async (arrayData) => {
       `https://budgetplanner-54498-default-rtdb.europe-west1.firebasedatabase.app/users/${uid}/transactions.json`,
       arrayData
     )
-    await takeTransactions()
+    await takeInfo()
   } catch (error) {
     switch (error.response.status) {
       case 401:

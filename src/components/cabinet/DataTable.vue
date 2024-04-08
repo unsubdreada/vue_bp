@@ -3,9 +3,8 @@ import { reactive, inject, ref } from 'vue'
 import axiosApiInstance from '@/api'
 import { XMarkIcon, ChevronUpIcon, ChevronDownIcon } from '@heroicons/vue/24/outline'
 
-const transactions = inject('transactions')
-
-const takeTransactions = inject('takeTransactions')
+const trans = inject('trans')
+const takeInfo = inject('takeInfo')
 
 const planned = ref('Запланировано')
 
@@ -23,14 +22,14 @@ const onRowClick = async (event) => {
       `https://budgetplanner-54498-default-rtdb.europe-west1.firebasedatabase.app/users/${uid}/transactions/${id}.json`
     )
     console.log(`Транзакция с ID: ${id} удалена из базы данных!`)
-    await takeTransactions()
+    await takeInfo()
   } catch (error) {
     console.log(`Транзакция с ID: ${id} не удалена из базы данных! Ошибка: ${error}`)
   }
 }
 
 const sortData = (key) => {
-  const sortedTransactions = [...transactions.value].sort((a, b) => {
+  const sortedTransactions = [...trans.value].sort((a, b) => {
     const aValue = a[key]
     const bValue = b[key]
 
@@ -41,7 +40,7 @@ const sortData = (key) => {
     }
   })
 
-  transactions.value = sortedTransactions
+  trans.value = sortedTransactions
 
   if (sortState.key === key) {
     sortState.direction = sortState.direction === 'asc' ? 'desc' : 'asc'
@@ -133,7 +132,7 @@ const sortData = (key) => {
       </thead>
       <tbody>
         <tr
-          v-for="(transaction, id) in transactions"
+          v-for="(transaction, id) in trans"
           :key="id"
           class="border-b border-slate-200 hover:bg-slate-100"
           :data-id="transaction.id"
