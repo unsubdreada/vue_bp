@@ -18,22 +18,24 @@ const takeInfo = async () => {
     )
     info.value = data
     const transactions = data.transactions
-      ? Object.entries(data.transactions).map(([key, value]) => ({
-          id: key,
-          date: value.date,
-          time: value.time,
-          category: value.category,
-          type: value.type,
-          amount: value.amount,
-          reason: value.reason,
-          planned: value.planned
-        })).reverse()
+      ? Object.entries(data.transactions)
+          .map(([key, value]) => ({
+            id: key,
+            date: value.date,
+            time: value.time,
+            category: value.category,
+            type: value.type,
+            amount: value.amount,
+            reason: value.reason,
+            planned: value.planned
+          }))
+          .reverse()
       : []
 
     trans.value = transactions
 
     //console.log(info.value)
-    console.log(trans.value)
+    //console.log(trans.value)
   } catch (error) {
     console.log(error)
   }
