@@ -5,7 +5,7 @@ import Tabs from './Tabs.vue'
 import Grid from './Grid.vue'
 import Table from './Table.vue'
 
-const currentComponent = ref('Grid')
+const currentComponent = ref('Table')
 const info = ref([])
 const trans = ref([])
 

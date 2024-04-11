@@ -22,7 +22,7 @@ const hasTransactions = computed(() => {
       <table class="min-w-full">
         <tbody>
           <tr
-            v-for="(transaction, id) in filteredTransactions.reverse().slice(0, 6)"
+            v-for="(transaction, id) in filteredTransactions.slice(0, 6)"
             :key="id"
             class="text-sm text-gray-900 font-light"
           >

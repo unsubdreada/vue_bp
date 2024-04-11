@@ -2,7 +2,7 @@
 import CardPerson from './PersonCard.vue'
 import LastDeclineCard from './LastDeclineCard.vue'
 import LastIncomeCard from './LastIncomeCard.vue'
-import PlannedCard from './PlannedCard.vue'
+import PlannedCard from './CalendarCard.vue'
 import ChartCard from './ChartCard.vue'
 import { inject, computed } from 'vue'
 

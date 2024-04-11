@@ -1,12 +1,16 @@
 <script setup>
-import { reactive, inject, ref } from 'vue'
+import { reactive, inject } from 'vue'
 import axiosApiInstance from '@/api'
-import { XMarkIcon, ChevronUpIcon, ChevronDownIcon } from '@heroicons/vue/24/outline'
+import {
+  XMarkIcon,
+  ChevronUpIcon,
+  ChevronDownIcon,
+  ClockIcon,
+  DocumentCheckIcon
+} from '@heroicons/vue/24/outline'
 
 const trans = inject('trans')
 const takeInfo = inject('takeInfo')
-
-const planned = ref('Запланировано')
 
 const sortState = reactive({
   key: null,
@@ -147,10 +151,20 @@ const sortData = (key) => {
             {{ transaction.category }}
           </td>
           <td class="text-sm text-gray-900 font-light px-6 py-2">
-            <span v-if="transaction.planned">
-              <span class="bg-amber-400 text-slate-500 text-xs font-medium px-2 py-1 rounded">{{
-                planned
-              }}</span>
+            <span
+              v-if="transaction.planned && transaction.date > new Date().toISOString().slice(0, 10)"
+              class="flex items-center gap-2"
+            >
+              <ClockIcon class="h-5 inline" />
+              {{ transaction.reason }}
+            </span>
+            <span
+              v-else-if="
+                transaction.planned && transaction.date < new Date().toISOString().slice(0, 10)
+              "
+              class="flex items-center gap-2"
+            >
+              <DocumentCheckIcon class="h-5 inline" />
               {{ transaction.reason }}
             </span>
             <span v-else>
