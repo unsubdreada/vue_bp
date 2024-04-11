@@ -97,7 +97,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="flex justify-center gap-3 p-2 m-auto">
+  <div class="flex justify-center gap-3 p-2 m-auto row-span-1">
     <input
       class="text-s text-center ring-1 ring-[#4c46e1] rounded-lg p-2 outline-none"
       type="date"
